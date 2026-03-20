@@ -43,6 +43,87 @@
 
 > 这些技能针对 **Next.js + Supabase + Stripe** 设计，但架构模式（幂等、Webhook 处理、积分系统、部署门禁）可迁移到任何技术栈。
 
+## 📊 输入 → 输出：这套技能改变了什么
+
+```
+┌─ 输入状态（Day 0）─────────────────────────┐
+│                                            │
+│  · 一个产品想法                             │
+│  · 一台装了 Node.js 的电脑                  │
+│  · GitHub / Supabase / Stripe 账号          │
+│  · 零代码，零文档，零架构                    │
+│                                            │
+└────────────────┬───────────────────────────┘
+                 │
+            10 个 Skill
+                 │
+┌─ 输出状态（Day 4）─────────────────────────┐
+│                                            │
+│  · 8 份架构文档 + 约束代码骨架               │
+│  · 全栈 Next.js 应用（SSR + Auth + RLS）    │
+│  · 生产级计费系统（双钱包 + 双轨支付）        │
+│  · 5 个 Edge Function 已部署                │
+│  · 6 关部署门禁全部通过                      │
+│  · 双语专业 README                          │
+│  · 可上线的 SaaS 产品                       │
+│                                            │
+└────────────────────────────────────────────┘
+```
+
+### 逐层状态流转
+
+| # | Skill | 输入状态 | 输出状态 | 关键产物 |
+|:-:|-------|---------|---------|---------|
+| 1 | **project-scaffold** | 产品想法 + 模糊需求 | 8 份耦合架构文档 + 约束代码骨架 | `docs/*.md`, `CLAUDE.md`, `src/types/*.ts`, `scripts/` |
+| 2 | **saas-quickstart** | GitHub / Supabase / Stripe 账号 | 可运行的 starter kit + 配置完毕的服务 | `.env.local`, Stripe fixtures, Vercel 部署 |
+| 3 | **nextjs-fullstack** | 空的 Next.js 项目 | 全栈代码结构 + 认证中间件 + Server Actions | `app/`, `features/`, `middleware.ts`, `lib/` |
+| 4 | **supabase-developer** | 空的 Supabase 项目 | Auth + RLS + Storage + Real-time + Edge Functions 就绪 | `migrations/`, RLS 策略, Storage buckets |
+| 5 | **stripe-payments** | Next.js + Supabase + Stripe 账号 | 简单订阅流程跑通（Checkout → Webhook → 门控） | `api/webhooks/`, `lib/stripe.ts`, subscriptions 表 |
+| 6 | **mvp-billing-system** | 基础 Stripe 集成完成 | 生产级计费（双钱包、幂等、限流、审计） | 5 张表, 7 个 RPC, 5 个 Edge Function, 计费 UI |
+| 7 | **mvp-billing-system-cn** | 同上 | 同上（中文版） | 同上 |
+| 8 | **supabase-gemini-deploy** | Edge Function 部署失败（401/500/CORS） | 所有 Edge Function 正常运行 | 诊断报告, 修复后配置, 调试工具集 |
+| 9 | **deploy-gate** | 代码完成，准备上线 | 6 关门禁报告（通过/阻断 + 原因） | 编译结果, 环境审计, Git 快照, 最终报告 |
+| 10 | **readme-standard** | 项目名 + 功能列表 + 技术栈 | 专业双语 README | `README.md`, `README_CN.md`, `LICENSE` |
+
+### 能力累积链
+
+```
+想法
+ │
+ ├─→ [project-scaffold]       → +架构文档 +约束代码
+ │                                    │
+ ├─→ [saas-quickstart]         → +可运行项目 +服务账号
+ │                                    │
+ │   ┌────────────────────────────────┤
+ │   │              │                 │
+ │   ▼              ▼                 ▼
+ │ nextjs-       supabase-       stripe-
+ │ fullstack     developer       payments
+ │ → +SSR         → +DB +RLS      → +Checkout
+ │ → +Auth中间件   → +Storage      → +Webhook
+ │ → +Actions     → +Real-time    → +订阅门控
+ │   │              │                 │
+ │   └──────────────┼─────────────────┘
+ │                  │
+ │                  ▼
+ │   [mvp-billing-system]      → +双钱包 +双轨支付
+ │                                +幂等 +限流
+ │                                +监控 +8个踩坑
+ │                  │
+ │   [supabase-gemini-deploy]  → +Edge Function 全部正常
+ │                  │
+ │                  ▼
+ │   [deploy-gate]             → +6关通过 = 可上线
+ │                  │
+ │                  ▼
+ └─→ [readme-standard]        → +专业README = 可开源
+                    │
+                    ▼
+             上线的 SaaS 产品
+```
+
+> **一句话总结**：输入是一个想法 + 三个账号（GitHub, Supabase, Stripe）。输出是一个有计费、有认证、有文档、经过 6 关门禁检验的可上线 SaaS 产品。
+
 ## 📦 快速安装
 
 ### 安装全部（推荐）

@@ -43,6 +43,87 @@ Compared to generic AI coding assistance, this suite offers 🚀 **6 key advanta
 
 > These skills are designed for **Next.js + Supabase + Stripe**, but the architectural patterns (idempotency, webhook handling, credit systems, deployment gates) transfer to any stack.
 
+## 📊 Input → Output: What This Suite Transforms
+
+```
+┌─ INPUT (Day 0) ────────────────────────────┐
+│                                            │
+│  · A product idea                          │
+│  · A computer with Node.js                 │
+│  · GitHub / Supabase / Stripe accounts     │
+│  · Zero code, zero docs, zero architecture │
+│                                            │
+└────────────────┬───────────────────────────┘
+                 │
+            10 Skills
+                 │
+┌─ OUTPUT (Day 4) ───────────────────────────┐
+│                                            │
+│  · 8 architecture docs + constraint code   │
+│  · Full-stack Next.js app (SSR + Auth)     │
+│  · Production billing (dual wallet + pay)  │
+│  · 5 Edge Functions deployed               │
+│  · 6-gate deployment checks passed         │
+│  · Professional bilingual README           │
+│  · A shippable SaaS product               │
+│                                            │
+└────────────────────────────────────────────┘
+```
+
+### State Transition Per Skill
+
+| # | Skill | Input State | Output State | Key Artifacts |
+|:-:|-------|------------|-------------|---------------|
+| 1 | **project-scaffold** | Product idea + vague requirements | 8 coupled architecture docs + constraint code skeleton | `docs/*.md`, `CLAUDE.md`, `src/types/*.ts`, `scripts/` |
+| 2 | **saas-quickstart** | GitHub / Supabase / Stripe accounts | Running starter kit + configured services | `.env.local`, Stripe fixtures, Vercel deploy |
+| 3 | **nextjs-fullstack** | Empty Next.js project | Full-stack code structure + auth middleware + Server Actions | `app/`, `features/`, `middleware.ts`, `lib/` |
+| 4 | **supabase-developer** | Empty Supabase project | Auth + RLS + Storage + Real-time + Edge Functions ready | `migrations/`, RLS policies, Storage buckets |
+| 5 | **stripe-payments** | Next.js + Supabase + Stripe accounts | Simple subscription flow working (Checkout → Webhook → Gate) | `api/webhooks/`, `lib/stripe.ts`, subscriptions table |
+| 6 | **mvp-billing-system** | Basic Stripe integration done | Production billing (dual wallet, idempotency, rate limiting, audit) | 5 tables, 7 RPCs, 5 Edge Functions, billing UI |
+| 7 | **mvp-billing-system-cn** | Same as above | Same as above (Chinese) | Same as above |
+| 8 | **supabase-gemini-deploy** | Edge Functions failing (401/500/CORS) | All Edge Functions running correctly | Diagnosis report, fixed configs, debug toolkit |
+| 9 | **deploy-gate** | Code complete, ready to ship | 6-gate validation report (pass/block + reasons) | Build results, env audit, Git snapshot, final report |
+| 10 | **readme-standard** | Project name + feature list + tech stack | Professional bilingual README | `README.md`, `README_CN.md`, `LICENSE` |
+
+### Capability Accumulation Chain
+
+```
+Idea
+ │
+ ├─→ [project-scaffold]       → + Architecture docs + constraint code
+ │                                    │
+ ├─→ [saas-quickstart]         → + Running project + service accounts
+ │                                    │
+ │   ┌────────────────────────────────┤
+ │   │              │                 │
+ │   ▼              ▼                 ▼
+ │ nextjs-       supabase-       stripe-
+ │ fullstack     developer       payments
+ │ → +SSR         → +DB +RLS      → +Checkout
+ │ → +Auth MW     → +Storage      → +Webhook
+ │ → +Actions     → +Real-time    → +Sub Gate
+ │   │              │                 │
+ │   └──────────────┼─────────────────┘
+ │                  │
+ │                  ▼
+ │   [mvp-billing-system]      → + Dual wallet + dual payment
+ │                                + Idempotency + rate limiting
+ │                                + Monitoring + 8 pitfalls
+ │                  │
+ │   [supabase-gemini-deploy]  → + All Edge Functions healthy
+ │                  │
+ │                  ▼
+ │   [deploy-gate]             → + 6 gates passed = ready to ship
+ │                  │
+ │                  ▼
+ └─→ [readme-standard]        → + Professional README = ready to open-source
+                    │
+                    ▼
+             Shipped SaaS Product
+```
+
+> **In one sentence**: Input is an idea + three accounts (GitHub, Supabase, Stripe). Output is a shippable SaaS product with billing, auth, documentation, and deployment validation.
+
 ## 📦 Quick Start
 
 ### Install All Skills (Recommended)
