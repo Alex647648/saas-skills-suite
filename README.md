@@ -348,4 +348,4 @@ Each skill is a standalone markdown file. To customize:
 
 ## 📄 License
 
-[MIT](./LICENSE) — Use freely, modify freely, no attribution required.
+[MIT](./LICENSE) — Use freely, modify freely. Attribution is not required, but a star or link back is always appreciated if you find it useful.

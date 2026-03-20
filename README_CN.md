@@ -348,4 +348,4 @@ cp -r saas-skills-suite/deploy-gate ~/.claude/skills/
 
 ## 📄 许可证
 
-[MIT](./LICENSE) —— 自由使用，自由修改，无需署名。
+[MIT](./LICENSE) —— 自由使用，自由修改。不强制署名，但如果觉得有用，欢迎点个 Star 或保留出处链接。
