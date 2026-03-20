@@ -11,8 +11,8 @@
 
 [![GitHub License](https://img.shields.io/github/license/Alex647648/saas-skills-suite?style=flat-square)](https://github.com/Alex647648/saas-skills-suite/blob/main/LICENSE)
 [![Version](https://img.shields.io/badge/version-v1.0.0-green.svg?style=flat-square)](https://github.com/Alex647648/saas-skills-suite)
-[![Skills](https://img.shields.io/badge/skills-9-blue.svg?style=flat-square)](https://github.com/Alex647648/saas-skills-suite)
-[![Lines](https://img.shields.io/badge/knowledge-5%2C366_lines-orange.svg?style=flat-square)](https://github.com/Alex647648/saas-skills-suite)
+[![Skills](https://img.shields.io/badge/skills-10-blue.svg?style=flat-square)](https://github.com/Alex647648/saas-skills-suite)
+[![Lines](https://img.shields.io/badge/knowledge-5%2C772_lines-orange.svg?style=flat-square)](https://github.com/Alex647648/saas-skills-suite)
 
 [English](./README.md) | [中文文档](./README_CN.md)
 
@@ -23,7 +23,7 @@
 
 ## ⚡ 项目概述
 
-**SaaS Skills Suite** 是一套 9 个相互连接的 Claude Code 技能，覆盖 **SaaS 开发全生命周期** —— 从项目骨架搭建到生产环境部署门禁检查。
+**SaaS Skills Suite** 是一套 10 个 Claude Code 技能，覆盖 **SaaS 开发全生命周期** 及文档标准化 —— 从项目骨架搭建到生产环境部署门禁检查。
 
 所有技能均提取自一个真实的生产项目（[InspirationLab Online](https://www.inspirationlab.net)），使用 Next.js + Supabase + Stripe 在 4 天内完成 32 次提交。每个「踩坑」章节都是我们在生产环境中实际遇到的 Bug。每个代码模板都可以直接复制使用。
 
@@ -132,6 +132,7 @@ cp -r saas-skills-suite/deploy-gate ~/.claude/skills/
 | 7 | **mvp-billing-system-cn** | 1,335 | 「计费系统」「支付」「订阅」 | 同上，全中文版本 |
 | 8 | **supabase-gemini-deploy** | 522 | 「Edge Function报错」「401」「CORS」 | 部署排查：JWT（ES256/HS256）、CORS、限流 |
 | 9 | **deploy-gate** | 100 | 「部署」「发布」「上线」 | 6 关顺序质量门禁 |
+| 10 | **readme-standard** | 406 | 「写README」「项目文档」「优化介绍」 | 标准化 README 写作指南，含徽章、结构、双语模板 |
 
 ## 🔍 技能详解
 
@@ -257,6 +258,21 @@ cp -r saas-skills-suite/deploy-gate ~/.claude/skills/
 | 5 | Git 状态 + 分支 + CHANGELOG | 是 |
 | 6 | 最终汇总报告 | — |
 
+---
+
+### 10. readme-standard（README 写作标准）
+
+> **标准化 GitHub README 写作指南** —— 本 README 就是用这个技能写的
+
+一套完整的专业项目文档模板系统：
+
+- **9 节标准结构**：头部、提示框、概述、快速安装、架构、详细介绍、技术栈、自定义、FAQ、许可证
+- **Shields.io 徽章模板库**：社区指标、项目元数据、技术栈、状态徽章 —— 统一 `flat-square` 风格
+- **Emoji 章节标题速查**：13 个标准 emoji 对应章节映射
+- **架构图规则**：Box-drawing 字符、70 列宽度限制、数据流标注
+- **双语规范**：文件命名、结构对齐、中英文间距规则
+- **反面模式**：9 个常见 README 错误及避免方法
+
 ## ⚙️ 技术栈
 
 这些技能针对以下技术栈设计，但很多模式可迁移到其他栈：
@@ -304,8 +320,10 @@ cp -r saas-skills-suite/deploy-gate ~/.claude/skills/
 │   └── SKILL.md                             # 生产级计费（中文）
 ├── supabase-gemini-deploy/
 │   └── SKILL.md                             # Edge Function 排查
-└── deploy-gate/
-    └── SKILL.md                             # 6 关部署门禁
+├── deploy-gate/
+│   └── SKILL.md                             # 6 关部署门禁
+└── readme-standard/
+    └── SKILL.md                             # README 写作标准
 ```
 
 ## ❓ 常见问题

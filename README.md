@@ -11,8 +11,8 @@
 
 [![GitHub License](https://img.shields.io/github/license/Alex647648/saas-skills-suite?style=flat-square)](https://github.com/Alex647648/saas-skills-suite/blob/main/LICENSE)
 [![Version](https://img.shields.io/badge/version-v1.0.0-green.svg?style=flat-square)](https://github.com/Alex647648/saas-skills-suite)
-[![Skills](https://img.shields.io/badge/skills-9-blue.svg?style=flat-square)](https://github.com/Alex647648/saas-skills-suite)
-[![Lines](https://img.shields.io/badge/knowledge-5%2C366_lines-orange.svg?style=flat-square)](https://github.com/Alex647648/saas-skills-suite)
+[![Skills](https://img.shields.io/badge/skills-10-blue.svg?style=flat-square)](https://github.com/Alex647648/saas-skills-suite)
+[![Lines](https://img.shields.io/badge/knowledge-5%2C772_lines-orange.svg?style=flat-square)](https://github.com/Alex647648/saas-skills-suite)
 
 [English](./README.md) | [中文文档](./README_CN.md)
 
@@ -23,7 +23,7 @@
 
 ## ⚡ Overview
 
-**SaaS Skills Suite** is a collection of 9 interconnected Claude Code skills covering the **full SaaS development lifecycle** — from project scaffolding to production deployment gate checks.
+**SaaS Skills Suite** is a collection of 10 Claude Code skills covering the **full SaaS development lifecycle** plus documentation standards — from project scaffolding to production deployment gate checks.
 
 Every skill was extracted from a real production project ([InspirationLab Online](https://www.inspirationlab.net)) built with Next.js + Supabase + Stripe over 4 days and 32 commits. Every pitfall section is a bug we actually hit. Every code template is copy-paste ready.
 
@@ -132,6 +132,7 @@ The 9 skills form a layered architecture. Upper layers depend on lower layers fo
 | 7 | **mvp-billing-system-cn** | 1,335 | "计费系统", "支付", "订阅" | Same as above, entirely in Chinese |
 | 8 | **supabase-gemini-deploy** | 522 | "Edge Function error", "401", "CORS" | Deployment troubleshooting: JWT (ES256/HS256), CORS, rate limiting |
 | 9 | **deploy-gate** | 100 | "deploy", "release", "go live" | 6 sequential quality gates before production deployment |
+| 10 | **readme-standard** | 406 | "write README", "update README", "project docs" | Standardized README writing guide with badges, structure, bilingual templates |
 
 ## 🔍 Skill Deep Dive
 
@@ -258,6 +259,21 @@ Organized as a decision tree — symptom → diagnosis → fix:
 | 4 | Feature regression checklist | Manual |
 | 5 | Git status + branch + changelog | Yes |
 | 6 | Final summary report | — |
+
+---
+
+### 10. readme-standard
+
+> **Standardized GitHub README writing guide** — the skill that wrote this README
+
+A complete template system for professional project documentation:
+
+- **9-section standard structure**: Header, Note, Overview, Quick Start, Architecture, Deep Dive, Tech Stack, Customization, FAQ, License
+- **Shields.io badge library**: Community metrics, project metadata, tech stack, status badges — all `flat-square` style
+- **Emoji section header reference**: 13 standard emoji-to-section mappings
+- **Architecture diagram rules**: Box-drawing characters, 70-column width limit, data flow annotations
+- **Bilingual spec**: File naming, structure alignment, spacing rules for EN+CN
+- **Anti-patterns**: 9 common README mistakes and how to avoid them
 
 ## ⚙️ Tech Stack
 
