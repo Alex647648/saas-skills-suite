@@ -1,39 +1,58 @@
+<div align="center">
+
 # SaaS Skills Suite
 
-**[中文版 README](./README_CN.md)**
+**Production-tested Claude Code skills for building SaaS products from scratch**
 
-> 9 production-tested [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skills that guide AI through every stage of SaaS development — from project scaffolding to deployment gate checks.
+[![GitHub Stars](https://img.shields.io/github/stars/Alex647648/saas-skills-suite?style=flat-square)](https://github.com/Alex647648/saas-skills-suite/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/Alex647648/saas-skills-suite?style=flat-square)](https://github.com/Alex647648/saas-skills-suite/network)
+[![GitHub Issues](https://img.shields.io/github/issues/Alex647648/saas-skills-suite?style=flat-square)](https://github.com/Alex647648/saas-skills-suite/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/Alex647648/saas-skills-suite?style=flat-square)](https://github.com/Alex647648/saas-skills-suite/pulls)
 
-Built on real lessons from shipping a SaaS product (Next.js + Supabase + Stripe) over 4 days and 32 commits. Every pitfall section is a bug we actually hit in production.
+[![GitHub License](https://img.shields.io/github/license/Alex647648/saas-skills-suite?style=flat-square)](https://github.com/Alex647648/saas-skills-suite/blob/main/LICENSE)
+[![Version](https://img.shields.io/badge/version-v1.0.0-green.svg?style=flat-square)](https://github.com/Alex647648/saas-skills-suite)
+[![Skills](https://img.shields.io/badge/skills-9-blue.svg?style=flat-square)](https://github.com/Alex647648/saas-skills-suite)
+[![Lines](https://img.shields.io/badge/knowledge-5%2C366_lines-orange.svg?style=flat-square)](https://github.com/Alex647648/saas-skills-suite)
 
----
+[English](./README.md) | [中文文档](./README_CN.md)
 
-## What Are Claude Code Skills?
+</div>
 
-Skills are markdown instruction files that teach Claude Code *how* to do specific tasks. When you mention a keyword like "billing system" or "deploy", Claude Code automatically loads the matching skill and follows its patterns, code templates, and best practices.
+> [!NOTE]
+> **What are Claude Code Skills?** Skills are markdown instruction files placed in `~/.claude/skills/` that teach [Claude Code](https://docs.anthropic.com/en/docs/claude-code) *how* to do specific tasks. When you mention a keyword like "billing system" or "deploy", Claude Code automatically loads the matching skill and follows its patterns, code templates, and best practices. Think of them as **reusable expert knowledge** that turns Claude Code into a domain specialist.
 
-Think of them as **reusable expert knowledge** that turns Claude Code into a specialist.
+## ⚡ Overview
 
----
+**SaaS Skills Suite** is a collection of 9 interconnected Claude Code skills covering the **full SaaS development lifecycle** — from project scaffolding to production deployment gate checks.
 
-## Who Is This For?
+Every skill was extracted from a real production project ([InspirationLab Online](https://www.inspirationlab.net)) built with Next.js + Supabase + Stripe over 4 days and 32 commits. Every pitfall section is a bug we actually hit. Every code template is copy-paste ready.
 
-- **Solo developers** building SaaS products with Next.js + Supabase + Stripe
-- **Small teams** who want consistent architecture decisions across AI-assisted development
-- **Anyone** who wants to skip the "figure it out" phase of SaaS billing, auth, and deployment
+Compared to generic AI coding assistance, this suite offers 🚀 **6 key advantages**:
 
----
+1. **Battle-Tested, Not Theoretical**: Every code template, every pitfall, every debugging tip comes from shipping a real product. Not a tutorial — a war diary.
 
-## Quick Start
+2. **Full Lifecycle Coverage**: From `project-scaffold` (Day 0 architecture) through `mvp-billing-system` (Day 2-3 billing) to `deploy-gate` (Day 4 ship) — no gaps between skills.
 
-### Option 1: Install All Skills (Recommended)
+3. **Deep Billing Expertise**: 1,300+ lines dedicated to the hardest part of SaaS — payments. Dual wallets, dual payment rails, credit idempotency, Stripe API version hell, webhook dedup. Problems that take weeks to debug, documented in minutes.
+
+4. **Interconnected Skill Graph**: Every skill has a "Related Skills" table. Claude Code always knows which skill to load next. No dead ends, no orphan knowledge.
+
+5. **Bilingual (EN + CN)**: The core billing skill ships in both English and Chinese. Choose the language that matches your thinking.
+
+6. **Zero Lock-In**: Pure markdown files. Edit them, fork them, replace code templates with your own. Works with any Claude Code setup, no plugins or extensions needed.
+
+> These skills are designed for **Next.js + Supabase + Stripe**, but the architectural patterns (idempotency, webhook handling, credit systems, deployment gates) transfer to any stack.
+
+## 📦 Quick Start
+
+### Install All Skills (Recommended)
 
 ```bash
 git clone https://github.com/Alex647648/saas-skills-suite.git
 cp -r saas-skills-suite/*/ ~/.claude/skills/
 ```
 
-### Option 2: Install Specific Skills
+### Install Specific Skills
 
 ```bash
 git clone https://github.com/Alex647648/saas-skills-suite.git
@@ -45,93 +64,87 @@ cp -r saas-skills-suite/deploy-gate ~/.claude/skills/
 
 ### Verify Installation
 
-Open Claude Code and type:
-
-```
+```bash
+# Open Claude Code and type:
 /skills
+# You should see the installed skills listed
+
+# Try saying:
+"help me set up Stripe payments"
+# → stripe-payments skill activates automatically
 ```
 
-You should see the installed skills listed. Try saying "help me set up Stripe payments" — the relevant skill activates automatically.
+## 🏗️ Architecture
 
----
+### Skill Dependency Graph
 
-## Skills at a Glance
-
-| # | Skill | Lines | What It Does |
-|---|-------|------:|-------------|
-| 1 | [project-scaffold](#1-project-scaffold) | 139 | Generates 8 architecture docs + constraint code skeleton |
-| 2 | [saas-quickstart](#2-saas-quickstart) | 71 | 5-step launch guide from starter kit to production |
-| 3 | [nextjs-fullstack](#3-nextjs-fullstack) | 141 | Next.js App Router patterns (Server Components, Actions, Middleware) |
-| 4 | [supabase-developer](#4-supabase-developer) | 1,492 | Supabase full reference (Auth, DB, Storage, Real-time, Edge Functions) |
-| 5 | [stripe-payments](#5-stripe-payments) | 224 | Stripe integration beginner guide (Checkout, Webhooks, Gating) |
-| 6 | [mvp-billing-system](#6-mvp-billing-system) | 1,342 | Production billing system — the full playbook (English) |
-| 7 | [mvp-billing-system-cn](#7-mvp-billing-system-cn) | 1,335 | Same as above, in Chinese |
-| 8 | [supabase-gemini-deploy](#8-supabase-gemini-deploy) | 522 | Edge Function deployment troubleshooting |
-| 9 | [deploy-gate](#9-deploy-gate) | 100 | Pre-deployment 6-gate quality checks |
-
-**Total: ~5,366 lines of structured knowledge + 771 lines of templates**
-
----
-
-## How the Skills Connect
+The 9 skills form a layered architecture. Upper layers depend on lower layers for context:
 
 ```
-                    +-----------------------+
-                    |   project-scaffold    |  "Start a new project"
-                    |  (Architecture docs   |
-                    |   + code skeleton)    |
-                    +-----------+-----------+
-                                |
-                    +-----------v-----------+
-                    |    saas-quickstart    |  "Quick launch from starter kit"
-                    +-----------+-----------+
-                                |
-              +-----------------+-----------------+
-              |                 |                 |
-    +---------v-------+ +------v--------+ +------v----------+
-    | nextjs-fullstack| | supabase-     | | stripe-payments |
-    | (App Router,    | | developer     | | (Beginner:      |
-    |  SSR, Actions)  | | (Auth, DB,    | |  Checkout,      |
-    |                 | |  Storage, RT) | |  Webhooks)      |
-    +--------+--------+ +------+--------+ +------+----------+
-              |                 |                 |
-              +-----------------+-----------------+
-                                |
-              +-----------------+-----------------+
-              |                                   |
-    +---------v-----------+          +------------v-----------+
-    | mvp-billing-system  |          | supabase-gemini-deploy |
-    | (Production-grade:  |          | (Edge Function         |
-    |  dual wallet, dual  |          |  troubleshooting:      |
-    |  payment, 8 pitfalls|          |  JWT, CORS, 401/500)   |
-    |  testing, monitoring)|         +------------+-----------+
-    +---------+-----------+                       |
-              |                                   |
-              +-----------------------------------+
-                                |
-                    +-----------v-----------+
-                    |      deploy-gate      |  "Can I deploy?"
-                    |  (6-gate pre-deploy   |
-                    |   quality checks)     |
-                    +-----------------------+
+┌─────────────────────────────────────────────────────────┐
+│                                                         │
+│    project-scaffold              "Start a new project"  │
+│    ┌──────────────────────────┐                         │
+│    │ 8 Architecture Docs      │                         │
+│    │ + Constraint Code        │                         │
+│    └────────────┬─────────────┘                         │
+│                 │                                       │
+│    saas-quickstart               "Quick launch"         │
+│    ┌────────────┴─────────────┐                         │
+│    │ 5-Step Starter Kit Guide │                         │
+│    └────────────┬─────────────┘                         │
+│                 │                                       │
+│    ┌────────────┼─────────────────────┐                 │
+│    │            │                     │                 │
+│    ▼            ▼                     ▼                 │
+│  nextjs-     supabase-          stripe-                 │
+│  fullstack   developer          payments                │
+│  (141 lines) (1,492 lines)      (224 lines)             │
+│    │            │                     │                 │
+│    └────────────┼─────────────────────┘                 │
+│                 │                                       │
+│    ┌────────────┴─────────────────────┐                 │
+│    │                                  │                 │
+│    ▼                                  ▼                 │
+│  mvp-billing-system            supabase-gemini-         │
+│  (1,342 lines EN)              deploy                   │
+│  (1,335 lines CN)              (522 lines)              │
+│    │                                  │                 │
+│    └────────────┬─────────────────────┘                 │
+│                 │                                       │
+│                 ▼                                       │
+│           deploy-gate                "Can I ship?"      │
+│           (100 lines)                                   │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
 ```
 
-Every skill has a **Related Skills** table at the bottom linking to its neighbors, so Claude Code always knows where to go next.
+### Skill Details
 
----
+| # | Skill | Lines | Triggers On | What It Does |
+|:-:|-------|------:|-------------|-------------|
+| 1 | **project-scaffold** | 139 | "new project", "scaffold", "initialize" | Generates 8 coupled architecture docs + TypeScript constraint code skeleton |
+| 2 | **saas-quickstart** | 71 | "new SaaS", "quick launch", "starter kit" | 5-step guide from clone to deploy using `next-supabase-stripe-starter` |
+| 3 | **nextjs-fullstack** | 141 | "Next.js", "route", "Server Action" | App Router patterns: Server Components, Actions, Middleware, caching |
+| 4 | **supabase-developer** | 1,492 | "Supabase", "database", "auth", "Edge Function" | Full reference: Auth (`@supabase/ssr`), DB, Storage, Real-time, Edge Functions |
+| 5 | **stripe-payments** | 224 | "Stripe beginner", "payment intro" | Beginner Stripe: Checkout, Webhooks, subscription gating |
+| 6 | **mvp-billing-system** | 1,342 | "billing system", "credits", "subscription" | Production billing playbook (EN): dual wallet, 8 pitfalls, testing, monitoring |
+| 7 | **mvp-billing-system-cn** | 1,335 | "计费系统", "支付", "订阅" | Same as above, entirely in Chinese |
+| 8 | **supabase-gemini-deploy** | 522 | "Edge Function error", "401", "CORS" | Deployment troubleshooting: JWT (ES256/HS256), CORS, rate limiting |
+| 9 | **deploy-gate** | 100 | "deploy", "release", "go live" | 6 sequential quality gates before production deployment |
 
-## Detailed Skill Descriptions
+## 🔍 Skill Deep Dive
 
 ### 1. project-scaffold
 
-> **Trigger keywords**: "new project", "scaffold", "initialize", "architecture", "from scratch"
+> **4-phase workflow** that generates a complete project skeleton
 
-A 4-phase workflow that generates a complete project skeleton:
-
-1. **Collect** — Interactive Q&A to gather product requirements
-2. **Generate 8 Docs** — Validation targets, data model, API contract, design system, agent spec, dev constraints, task board, deploy checklist
-3. **Generate Constraint Code** — Branded types, state machines, confirm guards, ESLint rules, lint scripts
-4. **Validate** — Run consistency checks across all generated files
+| Phase | Action | Output |
+|:-----:|--------|--------|
+| 1 | Interactive Q&A to gather requirements | Project brief |
+| 2 | Generate 8 architecture docs | Validation targets, data model, API contract, design system, agent spec, dev constraints, task board, deploy checklist |
+| 3 | Generate constraint code | Branded types, state machines, confirm guards, ESLint rules, lint scripts |
+| 4 | Validate consistency | Cross-doc consistency checks pass |
 
 Includes template files in `references/templates/` for document and code generation.
 
@@ -139,15 +152,13 @@ Includes template files in `references/templates/` for document and code generat
 
 ### 2. saas-quickstart
 
-> **Trigger keywords**: "new SaaS", "create project", "quick launch", "SaaS template"
-
-The fastest path from zero to deployed SaaS:
+> **Fastest path** from zero to deployed SaaS
 
 | Step | What | Time |
-|------|------|------|
+|:----:|------|:----:|
 | 1 | Clone starter kit | 10 min |
 | 2 | Configure Supabase + Stripe | 30 min |
-| 3 | Add your tool/feature | 1-3 days |
+| 3 | Build your core feature | 1-3 days |
 | 4 | Add payment gating | 30 min |
 | 5 | Deploy to Vercel | 10 min |
 
@@ -155,68 +166,62 @@ The fastest path from zero to deployed SaaS:
 
 ### 3. nextjs-fullstack
 
-> **Trigger keywords**: "Next.js", "page", "route", "Server Action"
+> **Next.js 14/15+ App Router** patterns reference
 
-Covers Next.js 14/15+ App Router patterns:
-
-- Server Components vs Client Components (when to use `'use client'`)
-- Server Actions for mutations (with Zod validation)
-- Route Handlers for webhooks
+- Server Components vs Client Components — when to use `'use client'`
+- Server Actions for mutations with Zod validation
+- Route Handlers for external webhooks
 - Middleware for auth protection
-- Performance targets (TTFB < 200ms, LCP < 2.5s)
+- Performance targets: TTFB < 200ms, LCP < 2.5s
 
 ---
 
 ### 4. supabase-developer
 
-> **Trigger keywords**: "Supabase", "database", "auth", "real-time", "storage", "Edge Function"
+> **The most comprehensive skill** — 1,492 lines covering every Supabase feature
 
-The most comprehensive skill (1,492 lines). Covers:
-
-- **Auth**: `@supabase/ssr` setup (updated from deprecated `auth-helpers`), `getUser()` vs `getSession()`, OAuth, middleware
-- **Database**: Schema design, RLS policies, migrations, RPC functions, `FOR UPDATE` locking
-- **Storage**: Buckets, policies, signed URLs, image transforms
-- **Real-time**: Channels, presence, broadcast
-- **Edge Functions**: Deno runtime, CORS, shared modules, deployment
+| Module | Key Topics |
+|--------|-----------|
+| **Auth** | `@supabase/ssr` setup, `getUser()` vs `getSession()`, OAuth, middleware (updated from deprecated `auth-helpers`) |
+| **Database** | Schema design, RLS policies, migrations, RPC functions, `FOR UPDATE` locking |
+| **Storage** | Buckets, policies, signed URLs, image transforms |
+| **Real-time** | Channels, presence, broadcast |
+| **Edge Functions** | Deno runtime, CORS, shared modules, `--no-verify-jwt` deployment |
 
 ---
 
 ### 5. stripe-payments
 
-> **Trigger keywords**: "Stripe beginner", "payment intro", "simple subscription"
+> **Beginner-level** Stripe integration using Next.js Route Handlers
 
-Beginner-level Stripe integration using Next.js Route Handlers:
+Covers Checkout Session creation, webhook handling, subscription sync, and payment gating.
 
-- Checkout Session creation
-- Webhook event handling
-- Subscription status sync to database
-- Payment gating in pages
-
-**Note**: This is the entry-level skill. For production billing with credits, dual wallets, and idempotency, use `mvp-billing-system` instead.
+> **Note**: For production billing with credits, dual wallets, and idempotency, use **mvp-billing-system** instead.
 
 ---
 
 ### 6. mvp-billing-system
 
-> **Trigger keywords**: "billing system", "Stripe integration", "payment system", "credits", "subscription"
-
-The crown jewel (1,342 lines). A complete playbook for production SaaS billing:
+> **The crown jewel** — 1,342 lines. A complete production billing playbook.
 
 | Phase | Content |
-|-------|---------|
-| Phase 1 | Database schema (5 core tables, RLS, triggers, indexes) |
-| Phase 2 | Billing RPC functions (atomic deduction, idempotent grants) |
-| Phase 3 | Edge Functions — Stripe integration (checkout, webhook, management) |
-| Phase 4 | Frontend components (pricing panel, paywall, billing history) |
-| Phase 5 | Advanced — dual payment + dual wallet |
-| Phase 6 | Security hardening (rate limiting, audit logs, pg_cron) |
+|:-----:|---------|
+| 1 | Database schema — 5 core tables, RLS, triggers, indexes |
+| 2 | Billing RPC functions — atomic deduction with `FOR UPDATE`, idempotent grants |
+| 3 | Edge Functions — Stripe checkout (3 flows), webhook handler, subscription management |
+| 4 | Frontend components — pricing panel, paywall modal, billing history |
+| 5 | Advanced — dual payment (auto-renew + manual) + dual wallet (subscription + top-up) |
+| 6 | Security — DB rate limiting, audit logs, pg_cron cleanup |
 
-Plus:
-- **8 Pitfall Sections** — Real bugs we hit and how we fixed them (Stripe API version hell, JWT ES256/HS256, duplicate subscriptions, etc.)
-- **Idempotency Patterns** — Webhook dedup, credit grant composite keys, refund checks
-- **Testing & QA** — Stripe CLI webhook forwarding, Test Clocks, test scenarios checklist
-- **Monitoring** — Structured logging, health check SQL queries, alerting strategy
-- **Debugging Quick Reference** — Symptom → Cause → Fix table
+**Bonus sections that save you weeks**:
+
+| Section | What You Get |
+|---------|-------------|
+| 8 Pitfalls | Stripe API version hell, JWT ES256/HS256, duplicate subscriptions, webhook version mismatch, and more |
+| Idempotency Patterns | Webhook dedup table, credit grant composite keys, refund checks, top-up dedup |
+| Testing & QA | Stripe CLI webhook forwarding, Test Clocks, 20+ test scenarios checklist |
+| Monitoring | Structured JSON logging, 5 health-check SQL queries, alerting strategy table |
+| Debugging | Symptom → Cause → Fix quick reference (10 common issues) |
 
 ---
 
@@ -228,43 +233,35 @@ Same content as `mvp-billing-system`, written entirely in Chinese. Choose based 
 
 ### 8. supabase-gemini-deploy
 
-> **Trigger keywords**: "Edge Function", "deploy error", "401", "500", "CORS", "JWT"
+> **Troubleshooting manual** for Supabase Edge Function deployment
 
-A troubleshooting manual for Supabase Edge Function deployment:
+Organized as a decision tree — symptom → diagnosis → fix:
 
-- JWT authentication issues (ES256 vs HS256 mismatch)
+- JWT issues (ES256 vs HS256 mismatch)
 - CORS configuration
 - API Key and environment variable setup
 - Billing RPC debugging
-- Rate limiting configuration
-- Network diagnostics (VPN/TLS issues)
-
-Organized as a decision tree: symptom → diagnosis → fix.
+- Rate limiting
+- Network diagnostics (VPN/TLS)
 
 ---
 
 ### 9. deploy-gate
 
-> **Trigger keywords**: "deploy", "release", "go live", "can I ship"
+> **6 sequential gates** — all must pass before deployment
 
-6 sequential gates — all must pass before deployment:
-
-| Gate | Check | Auto? |
-|------|-------|-------|
+| Gate | Check | Auto |
+|:----:|-------|:----:|
 | 1 | Build + TypeScript + ESLint | Yes |
-| 2 | Constraint scripts (if exist) | Yes |
-| 3 | Environment variables + migrations | Yes |
+| 2 | Constraint scripts (graceful skip if absent) | Yes |
+| 3 | Environment variables + migration files | Yes |
 | 4 | Feature regression checklist | Manual |
 | 5 | Git status + branch + changelog | Yes |
 | 6 | Final summary report | — |
 
-Gate 2 gracefully skips if constraint scripts don't exist (they're generated by `project-scaffold`).
+## ⚙️ Tech Stack
 
----
-
-## Tech Stack
-
-These skills are designed for the following stack, but many patterns are transferable:
+These skills are built for the following stack. Many patterns are stack-agnostic.
 
 | Layer | Technology |
 |-------|-----------|
@@ -276,15 +273,13 @@ These skills are designed for the following stack, but many patterns are transfe
 | Payments | Stripe (Checkout, Subscriptions, Webhooks) |
 | Deployment | Vercel + Supabase |
 
----
-
-## Customization
+## 🔧 Customization
 
 Each skill is a standalone markdown file. To customize:
 
-1. **Edit the SKILL.md** — Change code templates, add your own patterns
-2. **Adjust trigger keywords** — Modify the `description` field in the YAML frontmatter
-3. **Add project-specific context** — Add your price IDs, table names, API endpoints
+1. **Edit `SKILL.md`** — Modify code templates, add your own patterns
+2. **Adjust triggers** — Change the `description` field in the YAML frontmatter
+3. **Add project context** — Insert your price IDs, table names, API endpoints
 4. **Remove what you don't need** — Each skill works independently
 
 ### File Structure
@@ -292,48 +287,49 @@ Each skill is a standalone markdown file. To customize:
 ```
 ~/.claude/skills/
 ├── project-scaffold/
-│   ├── SKILL.md
-│   └── references/templates/    # Doc + code templates
+│   ├── SKILL.md                             # Skeleton generator skill
+│   └── references/templates/                # Doc + code templates
+│       ├── constraint-code.md               # TypeScript constraint templates
+│       ├── doc-templates.md                 # 8 architecture doc templates
+│       └── validation-target.md             # Validation target template
 ├── saas-quickstart/
-│   └── SKILL.md
+│   └── SKILL.md                             # 5-step launch guide
 ├── nextjs-fullstack/
-│   └── SKILL.md
+│   └── SKILL.md                             # App Router patterns
 ├── supabase-developer/
-│   └── SKILL.md
+│   └── SKILL.md                             # Supabase full reference
 ├── stripe-payments/
-│   └── SKILL.md
+│   └── SKILL.md                             # Stripe beginner guide
 ├── mvp-billing-system/
-│   └── SKILL.md
+│   └── SKILL.md                             # Production billing (EN)
 ├── mvp-billing-system-cn/
-│   └── SKILL.md
+│   └── SKILL.md                             # Production billing (CN)
 ├── supabase-gemini-deploy/
-│   └── SKILL.md
+│   └── SKILL.md                             # Edge Function troubleshooting
 └── deploy-gate/
-    └── SKILL.md
+    └── SKILL.md                             # 6-gate deployment checks
 ```
 
----
-
-## FAQ
+## ❓ FAQ
 
 **Q: Do I need all 9 skills?**
-No. Each skill works independently. Start with the ones relevant to your current task. The `mvp-billing-system` + `deploy-gate` combo covers the most ground.
+> No. Each skill works independently. Start with what you need now. The `mvp-billing-system` + `deploy-gate` combo covers the most ground.
 
 **Q: Will these conflict with other Claude Code skills?**
-No. Skills are loaded on-demand based on keyword matching. They don't interfere with each other or with skills from other sources.
+> No. Skills are loaded on-demand based on keyword matching. They don't interfere with each other or with skills from other sources.
 
 **Q: Can I use these with a different tech stack?**
-The architectural patterns (idempotency, webhook handling, credit systems) are stack-agnostic. The code templates are specific to Next.js + Supabase + Stripe, but can be adapted.
+> The architectural patterns (idempotency, webhook handling, credit systems) are stack-agnostic. Code templates target Next.js + Supabase + Stripe but can be adapted.
 
-**Q: How do I update the skills?**
-Pull the latest changes and re-copy:
-```bash
-cd saas-skills-suite && git pull
-cp -r */* ~/.claude/skills/
-```
+**Q: How do I update?**
+> ```bash
+> cd saas-skills-suite && git pull
+> cp -r */* ~/.claude/skills/
+> ```
 
----
+**Q: I found an issue / want to contribute.**
+> Open an [Issue](https://github.com/Alex647648/saas-skills-suite/issues) or [Pull Request](https://github.com/Alex647648/saas-skills-suite/pulls). Contributions welcome!
 
-## License
+## 📄 License
 
-MIT
+[MIT](./LICENSE) — Use freely, modify freely, no attribution required.
