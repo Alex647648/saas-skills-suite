@@ -107,13 +107,14 @@ export async function POST(req: Request) {
   switch (event.type) {
     case 'checkout.session.completed': {
       const session = event.data.object
-      const userId = session.subscription_data?.metadata?.supabase_user_id
+      // metadata is on the session object, NOT on subscription_data
+      const userId = session.metadata?.supabase_user_id
       await supabase.from('subscriptions').upsert({
         user_id: userId,
         stripe_subscription_id: session.subscription,
         status: 'active',
         price_id: session.line_items?.data[0]?.price?.id,
-      })
+      }, { onConflict: 'stripe_subscription_id' })
       break
     }
     case 'customer.subscription.updated':

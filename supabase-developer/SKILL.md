@@ -174,21 +174,26 @@ export function createClient() {
   )
 }
 
-// lib/supabase/server.ts (Server Components)
-import { createServerClient, type CookieOptions } from '@supabase/ssr'
+// lib/supabase/server.ts (Server Components — Next.js 15+)
+import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 
-export function createClient() {
-  const cookieStore = cookies()
+export async function createClient() {
+  const cookieStore = await cookies()  // Next.js 15: cookies() is async
 
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        get(name: string) {
-          return cookieStore.get(name)?.value
-        }
+        getAll() {
+          return cookieStore.getAll()
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value, options }) =>
+            cookieStore.set(name, value, options)
+          )
+        },
       }
     }
   )
@@ -369,7 +374,7 @@ export const config = {
 -- Example: Blog application schema
 
 -- Enable UUID extension
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+-- gen_random_uuid() is built into PostgreSQL 13+, no extension needed
 
 -- Profiles table (extends auth.users)
 CREATE TABLE profiles (
@@ -384,7 +389,7 @@ CREATE TABLE profiles (
 
 -- Posts table
 CREATE TABLE posts (
-  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   user_id UUID REFERENCES profiles(id) ON DELETE CASCADE NOT NULL,
   title TEXT NOT NULL,
   content TEXT NOT NULL,
@@ -395,7 +400,7 @@ CREATE TABLE posts (
 
 -- Comments table
 CREATE TABLE comments (
-  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   post_id UUID REFERENCES posts(id) ON DELETE CASCADE NOT NULL,
   user_id UUID REFERENCES profiles(id) ON DELETE CASCADE NOT NULL,
   content TEXT NOT NULL,
@@ -821,10 +826,9 @@ await channel.untrack()
 
 ```typescript
 // supabase/functions/hello/index.ts
-import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
-serve(async req => {
+Deno.serve(async (req: Request) => {
   try {
     // Create Supabase client with service role
     const supabaseClient = createClient(
@@ -1258,7 +1262,7 @@ $$ LANGUAGE plpgsql SECURITY DEFINER;
 ```sql
 -- Create audit log table
 CREATE TABLE audit_logs (
-  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   table_name TEXT NOT NULL,
   record_id UUID NOT NULL,
   action TEXT NOT NULL,

@@ -12,7 +12,7 @@ description: |
 
 # MVP Billing System — From Schema to Production
 
-> A battle-tested implementation guide distilled from 4 days, 32 commits building
+> A battle-tested implementation guide distilled from 21 days, 82 commits building
 > a production SaaS billing system (Next.js 15 + Supabase + Stripe).
 
 ## When to Activate
@@ -356,7 +356,8 @@ $$;
 
 ```sql
 CREATE OR REPLACE FUNCTION billing_grant_subscription_credits(
-  p_user_id UUID, p_tier TEXT, p_period_start TIMESTAMPTZ
+  p_user_id UUID, p_tier TEXT, p_period_start TIMESTAMPTZ,
+  p_is_upgrade BOOLEAN DEFAULT false
 )
 RETURNS BOOLEAN LANGUAGE plpgsql SECURITY DEFINER SET search_path = public, extensions
 AS $$
@@ -386,9 +387,10 @@ BEGIN
   IF v_grant = 0 THEN RETURN false; END IF;
 
   -- Update wallet
-  -- Same period (upgrade) → accumulate | New period (renewal) → reset
+  -- p_is_upgrade=true (mid-period upgrade) → accumulate credits
+  -- p_is_upgrade=false (new period renewal) → reset credits
   SELECT * INTO v_wallet FROM billing_wallet WHERE user_id = p_user_id FOR UPDATE;
-  IF v_sub.last_grant_period_start = p_period_start THEN
+  IF p_is_upgrade THEN
     v_new_bal := v_wallet.balance + v_grant;   -- accumulate (upgrade)
   ELSE
     v_new_bal := v_grant;                      -- reset (new period)
@@ -1178,7 +1180,7 @@ stripe events resend evt_xxxxxxxxxxxxx
 
 ### Stripe
 - [ ] Webhook endpoint configured with correct URL
-- [ ] Events subscribed: `checkout.session.completed`, `customer.subscription.created`, `customer.subscription.updated`, `invoice.paid`, `customer.subscription.deleted`
+- [ ] Events subscribed: `checkout.session.completed`, `customer.subscription.created`, `customer.subscription.updated`, `customer.subscription.deleted`, `invoice.paid`, `invoice.payment_failed`
 - [ ] Webhook signing secret set as `STRIPE_WEBHOOK_SECRET` env var
 - [ ] Account API version noted (may differ from SDK version)
 

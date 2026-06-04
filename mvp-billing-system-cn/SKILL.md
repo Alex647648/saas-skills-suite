@@ -12,7 +12,7 @@ description: |
 
 # MVP 计费系统实施手册 —— 从零到生产
 
-> 基于 4 天 32 次提交的实战经验蒸馏而成。
+> 基于 21 天 82 次提交的实战经验蒸馏而成。
 > 技术栈：Next.js 15 + Supabase + Stripe
 
 ## 适用场景
@@ -355,7 +355,8 @@ $$;
 
 ```sql
 CREATE OR REPLACE FUNCTION billing_grant_subscription_credits(
-  p_user_id UUID, p_tier TEXT, p_period_start TIMESTAMPTZ
+  p_user_id UUID, p_tier TEXT, p_period_start TIMESTAMPTZ,
+  p_is_upgrade BOOLEAN DEFAULT false
 )
 RETURNS BOOLEAN LANGUAGE plpgsql SECURITY DEFINER SET search_path = public, extensions
 AS $$
@@ -385,9 +386,10 @@ BEGIN
   IF v_grant = 0 THEN RETURN false; END IF;
 
   -- 更新钱包
-  -- 同周期（升级）→ 累加 | 新周期（续费）→ 重置
+  -- p_is_upgrade=true（同周期升级）→ 累加积分
+  -- p_is_upgrade=false（新周期续费）→ 重置积分
   SELECT * INTO v_wallet FROM billing_wallet WHERE user_id = p_user_id FOR UPDATE;
-  IF v_sub.last_grant_period_start = p_period_start THEN
+  IF p_is_upgrade THEN
     v_new_bal := v_wallet.balance + v_grant;   -- 累加（升级）
   ELSE
     v_new_bal := v_grant;                      -- 重置（新周期）
@@ -1171,7 +1173,7 @@ stripe events resend evt_xxxxxxxxxxxxx
 
 ### Stripe
 - [ ] Webhook 端点配置了正确的 URL
-- [ ] 订阅事件: `checkout.session.completed`, `customer.subscription.created`, `customer.subscription.updated`, `invoice.paid`, `customer.subscription.deleted`
+- [ ] 订阅事件: `checkout.session.completed`, `customer.subscription.created`, `customer.subscription.updated`, `customer.subscription.deleted`, `invoice.paid`, `invoice.payment_failed`
 - [ ] Webhook 签名密钥设为 `STRIPE_WEBHOOK_SECRET` 环境变量
 - [ ] 记录账号默认 API 版本（可能与 SDK 版本不同）
 
