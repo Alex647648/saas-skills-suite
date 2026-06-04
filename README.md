@@ -10,7 +10,7 @@
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/Alex647648/saas-skills-suite?style=flat-square)](https://github.com/Alex647648/saas-skills-suite/pulls)
 
 [![GitHub License](https://img.shields.io/github/license/Alex647648/saas-skills-suite?style=flat-square)](https://github.com/Alex647648/saas-skills-suite/blob/main/LICENSE)
-[![Version](https://img.shields.io/badge/version-v1.0.0-green.svg?style=flat-square)](https://github.com/Alex647648/saas-skills-suite)
+[![Version](https://img.shields.io/badge/version-v1.1.0-green.svg?style=flat-square)](https://github.com/Alex647648/saas-skills-suite)
 [![Skills](https://img.shields.io/badge/skills-10-blue.svg?style=flat-square)](https://github.com/Alex647648/saas-skills-suite)
 [![Lines](https://img.shields.io/badge/knowledge-5%2C772_lines-orange.svg?style=flat-square)](https://github.com/Alex647648/saas-skills-suite)
 
@@ -25,7 +25,7 @@
 
 **SaaS Skills Suite** is a collection of 10 Claude Code skills covering the **full SaaS development lifecycle** plus documentation standards — from project scaffolding to production deployment gate checks.
 
-Every skill was extracted from a real production project ([InspirationLab Online](https://www.inspirationlab.net)) built with Next.js + Supabase + Stripe over 4 days and 32 commits. Every pitfall section is a bug we actually hit. Every code template is copy-paste ready.
+Every skill was extracted from a real production project ([InspirationLab Online](https://www.inspirationlab.net)) built with Next.js + Supabase + Stripe over 21 days and 82 commits. Every pitfall section is a bug we actually hit. Every code template is copy-paste ready.
 
 Compared to generic AI coding assistance, this suite offers 🚀 **6 key advantages**:
 

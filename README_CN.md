@@ -10,7 +10,7 @@
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/Alex647648/saas-skills-suite?style=flat-square)](https://github.com/Alex647648/saas-skills-suite/pulls)
 
 [![GitHub License](https://img.shields.io/github/license/Alex647648/saas-skills-suite?style=flat-square)](https://github.com/Alex647648/saas-skills-suite/blob/main/LICENSE)
-[![Version](https://img.shields.io/badge/version-v1.0.0-green.svg?style=flat-square)](https://github.com/Alex647648/saas-skills-suite)
+[![Version](https://img.shields.io/badge/version-v1.1.0-green.svg?style=flat-square)](https://github.com/Alex647648/saas-skills-suite)
 [![Skills](https://img.shields.io/badge/skills-10-blue.svg?style=flat-square)](https://github.com/Alex647648/saas-skills-suite)
 [![Lines](https://img.shields.io/badge/knowledge-5%2C772_lines-orange.svg?style=flat-square)](https://github.com/Alex647648/saas-skills-suite)
 
@@ -25,7 +25,7 @@
 
 **SaaS Skills Suite** 是一套 10 个 Claude Code 技能，覆盖 **SaaS 开发全生命周期** 及文档标准化 —— 从项目骨架搭建到生产环境部署门禁检查。
 
-所有技能均提取自一个真实的生产项目（[InspirationLab Online](https://www.inspirationlab.net)），使用 Next.js + Supabase + Stripe 在 4 天内完成 32 次提交。每个「踩坑」章节都是我们在生产环境中实际遇到的 Bug。每个代码模板都可以直接复制使用。
+所有技能均提取自一个真实的生产项目（[InspirationLab Online](https://www.inspirationlab.net)），使用 Next.js + Supabase + Stripe 历经 21 天 82 次提交打造。每个「踩坑」章节都是我们在生产环境中实际遇到的 Bug。每个代码模板都可以直接复制使用。
 
 相比通用的 AI 编程辅助，本套件拥有 🚀 **六大优势**：
 
